@@ -10,4 +10,6 @@ TEST(common, str_to_buff) {
   str_to_buff(str, buff, len);
   ASSERT_EQ(len, strlen(str) / 2);
   ASSERT_EQ(buff[0], 0x49);
+  free(buff);
+  free(str);
 }
