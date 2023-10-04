@@ -20,10 +20,11 @@ void b64_str(const char *str, char **out) {
   memset(*out, 0, b64_buff_len);
   int j = 0;
   for (int i = 0; i < buff_len; i += 3) {
-    *out[j++] = MY_B64_CHARS[buff[i + 0] >> 2];
-    *out[j++] = MY_B64_CHARS[((buff[i + 0] & 0b11) << 4) | (buff[i + 1] >> 4)];
-    *out[j++] =
+    (*out)[j++] = MY_B64_CHARS[buff[i + 0] >> 2];
+    (*out)[j++] =
+        MY_B64_CHARS[((buff[i + 0] & 0b11) << 4) | (buff[i + 1] >> 4)];
+    (*out)[j++] =
         MY_B64_CHARS[((buff[i + 1] & 0b1111) << 2) | (buff[i + 2] >> 6)];
-    *out[j++] = MY_B64_CHARS[buff[i + 2] & 0b00111111];
+    (*out)[j++] = MY_B64_CHARS[buff[i + 2] & 0b00111111];
   }
 }
