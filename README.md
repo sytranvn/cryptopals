@@ -1,5 +1,8 @@
 # Solving challenges on https://cryptopals.com/
   - [ ] Set 1: Basics
+    - [x] Challenge 1: Convert hex to base64
+      - [Source](./src/set-1/ch-1/index.md)
+      - [Test](./test/ch_1_test.cpp)
   - [ ] Set 2: Block crypto
   - [ ] Set 3: Block & stream crypto
   - [ ] Set 4: Stream crypto and randomness
