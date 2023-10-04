@@ -10,7 +10,8 @@ FetchContent_MakeAvailable(gtest)
 
 add_executable(
     unit_tests
-    dummy_test.cpp
+    ch_1_test.cpp
+    common_test.cpp
     )
 
 target_link_libraries(unit_tests

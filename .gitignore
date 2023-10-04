@@ -1,4 +1,7 @@
 build/
+_deps/
+CMakeCache.txt
+CMakeFiles/
 # Prerequisites
 *.d
 

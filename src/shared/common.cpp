@@ -4,7 +4,7 @@
  * @param[in] str hex string to convert to buffer
  * @param[out] buff buffer
  */
-void str_to_buff(const char *str, std::uint8_t *&buff, size_t &len) {
+void str_to_buff(const char *str, std::uint8_t *&buff, std::size_t &len) {
   unsigned int val;
   std::stringstream *ss = new std::stringstream;
   size_t l = strlen(str);
