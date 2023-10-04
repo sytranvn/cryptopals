@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <memory.h>
 
-char *b64_str(const char *str);
+void b64_str(const char *str, char **out);
 extern const char *MY_B64_CHARS;
 
 #endif
