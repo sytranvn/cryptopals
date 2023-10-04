@@ -7,3 +7,15 @@
   - [ ] Set 6: RSA and DSA
   - [ ] Set 7: Hashes
   - [ ] Set 8: Abstract Algebra
+
+
+# Build
+```sh
+cmake -S. -B.
+make -C build
+```
+
+# Test
+```
+ctest --test-dir build
+```

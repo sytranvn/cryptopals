@@ -12,9 +12,8 @@ TEST(ch_1, b64_str) {
               "c2hyb29t";
   char *out;
   b64_str(st, &out);
+
   ASSERT_STREQ(expect, out);
 
-  free(st);
   free(out);
-  free(expect);
 }
