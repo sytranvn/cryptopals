@@ -2,7 +2,7 @@ build/
 _deps/
 CMakeCache.txt
 CMakeFiles/
-test/Testing/
+Testing/
 # Prerequisites
 *.d
 
