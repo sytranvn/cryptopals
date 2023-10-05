@@ -13,6 +13,7 @@ TEST(common, hex_str_to_buff) {
   ASSERT_EQ(buff[0], 0x49);
   free(buff);
 }
+
 TEST(common, buff_to_hex_str) {
   char *str;
   std::size_t len = 2;
