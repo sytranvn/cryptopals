@@ -16,4 +16,5 @@ TEST(ch_2, fixed_xor) {
   ASSERT_STREQ(outstr, expect);
 
   free(out);
+  free(outstr);
 }
