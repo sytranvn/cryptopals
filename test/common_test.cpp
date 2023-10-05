@@ -1,5 +1,4 @@
 #include "common.h"
-#include <_types/_uint8_t.h>
 #include <cstring>
 #include <gtest/gtest.h>
 
