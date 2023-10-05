@@ -1,5 +1,4 @@
 #include "common.h"
-#include <malloc/_malloc.h>
 
 /**
  * @param[in] str hex string to convert to buffer
