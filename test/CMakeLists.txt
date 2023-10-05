@@ -10,14 +10,16 @@ FetchContent_MakeAvailable(gtest)
 
 add_executable(
     unit_tests
-    ch_1_test.cpp
     common_test.cpp
+    ch_1_test.cpp
+    ch_2_test.cpp
     )
 
 target_link_libraries(unit_tests
   PRIVATE
-    ch_1
     common
+    ch_1
+    ch_2
     gtest_main
   )
 
