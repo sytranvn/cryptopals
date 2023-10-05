@@ -3,6 +3,9 @@
     - [x] Challenge 1: Convert hex to base64
       - [Source](./src/set-1/ch-1/index.md)
       - [Test](./test/ch_1_test.cpp)
+    - [x] Challenge 2: Fixed XOR
+      - [Source](./src/set-1/ch-2/index.md)
+      - [Test](./test/ch_2_test.cpp)
   - [ ] Set 2: Block crypto
   - [ ] Set 3: Block & stream crypto
   - [ ] Set 4: Stream crypto and randomness
