@@ -8,7 +8,7 @@ void b64_str(const char *str, char **out) {
   // convert input string into uint8 buffer
   std::uint8_t *buff;
   size_t buff_len;
-  str_to_buff(str, buff, buff_len);
+  hex_str_to_buff(str, buff, buff_len);
 
   // b64 only use 6 bits, so we use each element of array to store 6 bits only
   // 11111111 11110000 11001100
