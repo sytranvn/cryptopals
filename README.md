@@ -1,3 +1,4 @@
+[![CMake on multiple platforms](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=master&event=push)](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-multi-platform.yml)
 # Solving challenges on https://cryptopals.com/
   - [ ] Set 1: Basics
     - [x] Challenge 1: Convert hex to base64
