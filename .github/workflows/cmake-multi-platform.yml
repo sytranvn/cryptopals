@@ -27,18 +27,15 @@ jobs:
         build_type: [Release]
         c_compiler: [gcc, clang, cl]
         include:
-          # TODO: this should work, passing on MAC
-          # - os: ubuntu-latest
-          #   c_compiler: gcc
-          #   cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
         exclude:
           - os: ubuntu-latest
             c_compiler: cl
-          - os: ubuntu-latest
-            c_compiler: gcc
 
     steps:
     - uses: actions/checkout@v3
