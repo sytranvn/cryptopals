@@ -6,6 +6,14 @@
     - [x] Challenge 2: Fixed XOR
       - [Source](./src/set-1/ch-2/index.md)
       - [Test](./test/ch_2_test.cpp)
+    - [x] Challenge 3: Single-byte XOR cipher
+      - [Source](./src/set-1/ch-3/index.md)
+      - [Test](./test/ch_3_test.cpp)
+    - [ ] Challenge 4: Fixed XOR
+    - [ ] Challenge 5: Implement repeating-key XOR
+    - [ ] Challenge 6: Break repeating-key XOR
+    - [ ] Challenge 7: AES in ECB mode
+    - [ ] Challenge 8: Detect AES in ECB mode
   - [ ] Set 2: Block crypto
   - [ ] Set 3: Block & stream crypto
   - [ ] Set 4: Stream crypto and randomness
