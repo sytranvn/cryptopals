@@ -1,7 +1,5 @@
 #include "ch_3.h"
 #include "common.h"
-#include <cstring>
-#include <malloc/_malloc.h>
 
 // https://pi.math.cornell.edu/~mec/2003-2004/cryptography/subs/frequencies.html
 // added 7.0 for space character
