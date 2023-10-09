@@ -37,6 +37,8 @@ jobs:
         exclude:
           - os: ubuntu-latest
             c_compiler: cl
+          - os: ubuntu-latest
+            c_compiler: gcc
 
     steps:
     - uses: actions/checkout@v3
