@@ -8,8 +8,10 @@ TEST(ch_3, single_byte_xor_cipher) {
   char *out;
   char cipher;
   std::size_t len;
-  single_byte_xor_cipher(str, &out, &cipher);
+  float fitness;
+  single_byte_xor_cipher(str, &out, &cipher, &fitness);
   printf("%c: %s\n", cipher, out);
   ASSERT_EQ(cipher, 'X');
   ASSERT_STREQ(out, expect);
+  ASSERT_EQ(fitness, 181);
 }

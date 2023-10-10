@@ -21,7 +21,8 @@ int freq_of(const char *str) {
   return s;
 }
 
-void single_byte_xor_cipher(const char *str, char **out, char *cipher) {
+void single_byte_xor_cipher(const char *str, char **out, char *cipher,
+                            float *fitness) {
   std::uint8_t *buff;
   std::size_t len;
 
@@ -48,6 +49,7 @@ void single_byte_xor_cipher(const char *str, char **out, char *cipher) {
       max_freq = freq_cur;
       strcpy(*out, cur);
       *cipher = ch;
+      *fitness = max_freq;
     }
   }
 
