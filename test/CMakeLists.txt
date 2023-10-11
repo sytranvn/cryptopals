@@ -14,6 +14,7 @@ add_executable(
     ch_1_test.cpp
     ch_2_test.cpp
     ch_3_test.cpp
+    ch_4_test.cpp
     )
 
 target_link_libraries(unit_tests
@@ -22,8 +23,10 @@ target_link_libraries(unit_tests
     ch_1
     ch_2
     ch_3
+    ch_4
     gtest_main
   )
+
 
 # automatic discovery of unit tests
 include(GoogleTest)

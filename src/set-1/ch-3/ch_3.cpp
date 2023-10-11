@@ -21,7 +21,8 @@ int freq_of(const char *str) {
   return s;
 }
 
-void single_byte_xor_cipher(const char *str, char **out, char *cipher) {
+void single_byte_xor_cipher(const char *str, char **out, char *cipher,
+                            float *fitness) {
   std::uint8_t *buff;
   std::size_t len;
 
@@ -30,7 +31,6 @@ void single_byte_xor_cipher(const char *str, char **out, char *cipher) {
   *out = (char *)malloc(sizeof(char) * (len + 1));
   float max_freq = 0;
   float freq_cur = 0;
-
   // try xor each printable character with current string
   for (std::uint8_t i = 0; i < 95; i++) {
     memset(cur, '\0', sizeof(char) * (len + 1));
@@ -48,8 +48,8 @@ void single_byte_xor_cipher(const char *str, char **out, char *cipher) {
       max_freq = freq_cur;
       strcpy(*out, cur);
       *cipher = ch;
+      *fitness = max_freq;
     }
   }
-
   free(cur);
 }
