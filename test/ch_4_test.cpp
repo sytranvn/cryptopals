@@ -2,7 +2,8 @@
 #include <cstdio>
 #include <gtest/gtest.h>
 
-const char *encrypted_texts[] = {
+const std::size_t encrypted_texts_len = 327;
+const char *encrypted_texts[encrypted_texts_len] = {
     "0e3647e8592d35514a081243582536ed3de6734059001e3f535ce6271032",
     "334b041de124f73c18011a50e608097ac308ecee501337ec3e100854201d",
     "40e127f51c10031d0133590b1e490f3514e05a54143d08222c2a4071e351",
@@ -331,13 +332,10 @@ const char *encrypted_texts[] = {
     "4c071a57e9356ee415103c5c53e254063f2019340969e30a2e381d5b2555",
     "32042f46431d2c44607934ed180c1028136a5f2b26092e3b2c4e2930585a"};
 
-const std::size_t encrypted_texts_len = 328;
-
 TEST(ch_4, detect_single_byte_xor) {
   char *out;
   char cipher;
   detect_single_byte_xor(encrypted_texts, encrypted_texts_len, &out, &cipher);
-  ASSERT_STREQ(
-      out, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
-  ASSERT_EQ(cipher, 'a');
+  ASSERT_STREQ(out, "Now that the party is jumping");
+  ASSERT_EQ(cipher, '5');
 };

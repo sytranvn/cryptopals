@@ -12,10 +12,12 @@ void detect_single_byte_xor(const char *strs[], std::size_t strs_len,
   memset(*out, '\0', strlen(strs[0]));
 
   for (int i = 0; i < strs_len; i++) {
+    fitness = 0;
     single_byte_xor_cipher((strs)[i], &cur, &cur_cipher, &fitness);
     if (fitness > fitness_max) {
-      memcpy(*out, (strs)[i], strlen(strs[i]) * sizeof(char));
+      memcpy(*out, cur, strlen(cur) * sizeof(char));
       *cipher = cur_cipher;
+      fitness_max = fitness;
     }
   }
 }
