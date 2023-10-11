@@ -10,7 +10,9 @@
     - [x] Challenge 3: Single-byte XOR cipher
       - [Source](./src/set-1/ch-3/index.md)
       - [Test](./test/ch_3_test.cpp)
-    - [ ] Challenge 4: Fixed XOR
+    - [x] Challenge 4: Detect single-character XOR
+      - [Source](./src/set-1/ch-4/index.md)
+      - [Test](./test/ch_4_test.cpp)
     - [ ] Challenge 5: Implement repeating-key XOR
     - [ ] Challenge 6: Break repeating-key XOR
     - [ ] Challenge 7: AES in ECB mode
