@@ -10,7 +10,7 @@
 #include <memory>
 #include <string.h>
 
-void detect_single_byte_xor(const char **strs, std::size_t strs_len, char **out,
-                            char *cipher);
+void detect_single_byte_xor(const char *strs[], std::size_t strs_len,
+                            char **out, char *cipher);
 
 #endif

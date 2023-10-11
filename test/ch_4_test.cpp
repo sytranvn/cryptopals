@@ -337,6 +337,7 @@ TEST(ch_4, detect_single_byte_xor) {
   char *out;
   char cipher;
   detect_single_byte_xor(encrypted_texts, encrypted_texts_len, &out, &cipher);
-  ASSERT_STREQ(out, "");
-  ASSERT_EQ(cipher, 'X');
+  ASSERT_STREQ(
+      out, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
+  ASSERT_EQ(cipher, 'a');
 };
