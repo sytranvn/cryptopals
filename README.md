@@ -1,4 +1,6 @@
-[![Cross platforms tests](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-multi-platform.yml)
+[![CLang tests](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-clang.yml/badge.svg)](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-clang.yml)
+[![GCC tests](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-gcc.yml/badge.svg)](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-gcc.yml)
+
 # Solving challenges on https://cryptopals.com/
   - [ ] Set 1: Basics
     - [x] Challenge 1: Convert hex to base64
