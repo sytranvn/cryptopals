@@ -5,12 +5,13 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+
 jobs:
   call-cmake-workflow:
     uses: ./.github/workflows/cmake-multi-platform.yml
-  with:
-    os: ubuntu-latest
-    build_type: Release
-    c_compiler: clang
-    cpp_compiler: clang++
+    with:
+      os: ubuntu-latest
+      build_type: Release
+      c_compiler: clang
+      cpp_compiler: clang++
   
