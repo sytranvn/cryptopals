@@ -15,6 +15,7 @@ add_executable(
     ch_2_test.cpp
     ch_3_test.cpp
     ch_4_test.cpp
+    ch_5_test.cpp
     )
 
 target_link_libraries(unit_tests
@@ -24,6 +25,7 @@ target_link_libraries(unit_tests
     ch_2
     ch_3
     ch_4
+    ch_5
     gtest_main
   )
 

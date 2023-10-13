@@ -14,4 +14,6 @@ TEST(ch_3, single_byte_xor_cipher) {
   ASSERT_EQ(cipher, 'X');
   ASSERT_STREQ(out, expect);
   ASSERT_EQ(fitness, 181);
+
+  free(out);
 }

@@ -338,4 +338,6 @@ TEST(ch_4, detect_single_byte_xor) {
   detect_single_byte_xor(encrypted_texts, encrypted_texts_len, &out, &cipher);
   ASSERT_STREQ(out, "Now that the party is jumping");
   ASSERT_EQ(cipher, '5');
+
+  free(out);
 };
