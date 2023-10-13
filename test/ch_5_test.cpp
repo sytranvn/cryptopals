@@ -3,7 +3,6 @@
 #include <cstdio>
 #include <cstring>
 #include <gtest/gtest.h>
-#include <malloc/_malloc.h>
 
 TEST(ch_5, repeating_key_xor) {
   char *out;

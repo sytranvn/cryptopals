@@ -1,7 +1,6 @@
 #include "ch_4.h"
 #include <cstdio>
 #include <gtest/gtest.h>
-#include <malloc/_malloc.h>
 
 const std::size_t encrypted_texts_len = 327;
 const char *encrypted_texts[encrypted_texts_len] = {
