@@ -1,6 +1,6 @@
 [![CLang tests](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-clang.yml/badge.svg)](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-clang.yml)
 [![GCC tests](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-gcc.yml/badge.svg)](https://github.com/sytranvn/cryptopals/actions/workflows/cmake-gcc.yml)
-[![Progress](https://us-central1-sytranvn.cloudfunctions.net/progress/5/66)](https://us-central1-sytranvn.cloudfunctions.net/progress/5/66)
+[![Progress](https://us-central1-sytranvn.cloudfunctions.net/progress/5/66)](./src/set-1/ch-5/index.md)
 
 # Solving challenges on https://cryptopals.com/
   - [ ] Set 1: Basics
