@@ -15,7 +15,9 @@
     - [x] Challenge 4: Detect single-character XOR
       - [Source](./src/set-1/ch-4/index.md)
       - [Test](./test/ch_4_test.cpp)
-    - [ ] Challenge 5: Implement repeating-key XOR
+    - [x] Challenge 5: Implement repeating-key XOR
+      - [Source](./src/set-1/ch-5/index.md)
+      - [Test](./test/ch_5_test.cpp)
     - [ ] Challenge 6: Break repeating-key XOR
     - [ ] Challenge 7: AES in ECB mode
     - [ ] Challenge 8: Detect AES in ECB mode
