@@ -1,6 +1,4 @@
 #include "ch_5.h"
-#include <cstring>
-#include <memory>
 
 void repeating_key_xor(const char *str, const char *key, char **out) {
   int len = strlen(str);
