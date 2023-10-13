@@ -1,4 +1,6 @@
 #include "common.h"
+#include <cstring>
+#include <malloc/_malloc.h>
 
 /**
  * @param[in] str hex string to convert to buffer
@@ -30,5 +32,47 @@ void buff_to_hex_str(const std::uint8_t *buff, std::size_t len, char *&str) {
   for (int i = 0; i < len; i++) {
     str[j++] = hexdigits[buff[i] >> 4];
     str[j++] = hexdigits[buff[i] & 0b1111];
+  }
+}
+
+void long_str_to_lines(const char *str, int max_len, char ***out,
+                       std::size_t *len) {
+  char **strs;
+  char line[100];
+  char s;
+  int col = 0;
+  int row = 0;
+  memset(line, '\0', 100);
+  strs = (char **)malloc(sizeof(char *) * max_len); // pointers are cheap
+
+  for (char ch = *str; ch != '\0' && row < max_len; ch = *(++str)) {
+    if (ch == '\n') {
+      if (col > 0) {
+        strs[row] = (char *)malloc(sizeof(char) * (col + 1));
+        strcpy(strs[row], line);
+        memset(line, '\0', 100);
+        row++;
+        col = 0;
+      }
+    } else {
+      line[col] = ch;
+      col++;
+    }
+  }
+  if (row == max_len) {
+    for (int i = 0; i < max_len; i++) {
+      free(*strs);
+    }
+    free(strs);
+    printf("ERROR: data is greater than max_len, consider increasing it");
+    exit(1);
+  } else {
+    (*out) = (char **)malloc(sizeof(char *) * (row));
+
+    for (int i = 0; i < row; i++) {
+      (*out)[i] = strs[i];
+    }
+    free(strs);
+    *len = row;
   }
 }

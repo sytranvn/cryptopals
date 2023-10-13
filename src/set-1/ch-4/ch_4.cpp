@@ -2,8 +2,8 @@
 #include "common.h"
 #include <cstring>
 
-void detect_single_byte_xor(const char *strs[], std::size_t strs_len,
-                            char **out, char *cipher) {
+void detect_single_byte_xor(char **strs, std::size_t strs_len, char **out,
+                            char *cipher) {
   char *cur;
   char cur_cipher;
   float fitness;
