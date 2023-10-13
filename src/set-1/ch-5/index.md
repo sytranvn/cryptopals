@@ -1,33 +1,19 @@
-# Break repeating-key XOR
+# Implement repeating-key XOR
 
-> **It is officially on, now.**
->
-> _This challenge isn't conceptually hard, but it involves actual error-prone coding. The other challenges in this set are there to bring you up to speed. This one is there to qualify you. If you can do this one, you're probably just fine up to Set 6_.
+Here is the opening stanza of an important work of the English language:
 
-There's a file here. It's been base64'd after being encrypted with repeating-key XOR.
+    Burning 'em, if you ain't quick and nimble
+    I go crazy when I hear a cymbal
 
-Decrypt it.
+Encrypt it, under the key `"ICE"`, using repeating-key XOR.
 
-Here's how:
+In repeating-key XOR, you'll sequentially apply each byte of the key; the first byte of plaintext will be XOR'd against I, the next C, the next E, then I again for the 4th byte, and so on.
 
-1. Let `KEYSIZE` be the guessed length of the key; try values from 2 to (say) 40.
-1. Write a function to compute the edit distance/Hamming distance between two strings. The Hamming distance is just the number of differing bits. The distance between:
-    ```
-    this is a test
-    ```
-    and
-    ```
-    wokka wokka!!!
-    ```
-    is **37**. Make sure your code agrees before you proceed.
-1. For each KEYSIZE, take the first KEYSIZE worth of bytes, and the second KEYSIZE worth of bytes, and find the edit distance between them. Normalize this result by dividing by KEYSIZE.
-1. The KEYSIZE with the smallest normalized edit distance is probably the key. You could proceed perhaps with the smallest 2-3 KEYSIZE values. Or take 4 KEYSIZE blocks instead of 2 and average the distances.
-1. Now that you probably know the KEYSIZE: break the ciphertext into blocks of KEYSIZE length.
-1. Now transpose the blocks: make a block that is the first byte of every block, and a block that is the second byte of every block, and so on.
-1. Solve each block as if it was single-character XOR. You already have code to do this.
-1. For each block, the single-byte XOR key that produces the best looking histogram is the repeating-key XOR key byte for that block. Put them together and you have the key.
+It should come out to:
 
-This code is going to turn out to be surprisingly useful later on. Breaking repeating-key XOR ("Vigenere") statistically is obviously an academic exercise, a "Crypto 101" thing. But more people "know how" to break it than can actually break it, and a similar technique breaks something much more important.
+    0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272
+    a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f
 
-> **No, that's not a mistake.**
-> We get more tech support questions for this challenge than any of the other ones. We promise, there aren't any blatant errors in this text. In particular: the "wokka wokka!!!" edit distance really is 37.
+Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mail. Encrypt your password file. Your .sig file. Get a feel for it. I promise, we aren't wasting your time with this.
+
+Crypto

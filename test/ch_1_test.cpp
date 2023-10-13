@@ -5,11 +5,10 @@
 
 TEST(ch_1, b64_str) {
 
-  char *st = (char *)("49276d206b696c6c696e6720796f757220627261696e206c696b6520"
-                      "6120706f69736f6e6f7573206d757368726f6f6d\0");
-  char *expect =
-      (char *)"SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11"
-              "c2hyb29t\0";
+  const char *st = "49276d206b696c6c696e6720796f757220627261696e206c696b6520"
+                   "6120706f69736f6e6f7573206d757368726f6f6d";
+  const char *expect =
+      "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
   char *out;
   b64_str(st, &out);
 

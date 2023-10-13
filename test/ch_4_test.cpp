@@ -1,6 +1,7 @@
 #include "ch_4.h"
 #include <cstdio>
 #include <gtest/gtest.h>
+#include <malloc/_malloc.h>
 
 const std::size_t encrypted_texts_len = 327;
 const char *encrypted_texts[encrypted_texts_len] = {
@@ -338,4 +339,6 @@ TEST(ch_4, detect_single_byte_xor) {
   detect_single_byte_xor(encrypted_texts, encrypted_texts_len, &out, &cipher);
   ASSERT_STREQ(out, "Now that the party is jumping");
   ASSERT_EQ(cipher, '5');
+
+  free(out);
 };

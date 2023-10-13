@@ -1,5 +1,6 @@
 #include "ch_3.h"
 #include <gtest/gtest.h>
+#include <malloc/_malloc.h>
 
 TEST(ch_3, single_byte_xor_cipher) {
   const char *str =
@@ -14,4 +15,6 @@ TEST(ch_3, single_byte_xor_cipher) {
   ASSERT_EQ(cipher, 'X');
   ASSERT_STREQ(out, expect);
   ASSERT_EQ(fitness, 181);
+
+  free(out);
 }
