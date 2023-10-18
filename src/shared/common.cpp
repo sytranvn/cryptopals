@@ -1,6 +1,5 @@
 #include "common.h"
 #include <cstring>
-#include <malloc/_malloc.h>
 
 /**
  * @param[in] str hex string to convert to buffer
@@ -19,10 +18,9 @@ void hex_str_to_buff(const char *str, std::uint8_t *&buff, std::size_t &len) {
     (*ss) >> std::hex >> val;
     buff[j++] = val;
     std::stringstream().swap(*ss);
-    /* DEBUG */
-    /* printf("%02x", val); */
+    debug("%02x", val);
   }
-  /* printf("\n"); */
+  debug("\n");
 }
 
 void buff_to_hex_str(const std::uint8_t *buff, std::size_t len, char *&str) {
@@ -64,7 +62,7 @@ void long_str_to_lines(const char *str, int max_len, char ***out,
       free(*strs);
     }
     free(strs);
-    printf("ERROR: data is greater than max_len, consider increasing it");
+    debug("ERROR: data is greater than max_len, consider increasing it");
     exit(1);
   } else {
     (*out) = (char **)malloc(sizeof(char *) * (row));
@@ -75,4 +73,12 @@ void long_str_to_lines(const char *str, int max_len, char ***out,
     free(strs);
     *len = row;
   }
+}
+
+int hamming_distance(const char *a, const char *b, std::size_t len) {
+  int d = 0;
+  for (int i = 0; i < len; i++) {
+    d += __builtin_popcount(a[i] ^ b[i]);
+  }
+  return d;
 }

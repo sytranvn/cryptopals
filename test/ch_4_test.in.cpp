@@ -14,7 +14,7 @@ TEST(ch_4, detect_single_byte_xor) {
   long_str_to_lines(test_data, 500, &encrypted_texts, &encrypted_texts_len);
 
   for (int i = 0; i < encrypted_texts_len; i++) {
-    printf("%d: %s\n", i, encrypted_texts[i]);
+    debug("%d: %s\n", i, encrypted_texts[i]);
   }
 
   detect_single_byte_xor(encrypted_texts, encrypted_texts_len, &out, &cipher);

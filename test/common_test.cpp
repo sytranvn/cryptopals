@@ -23,3 +23,9 @@ TEST(common, buff_to_hex_str) {
   ASSERT_STREQ(str, expect);
   free(str);
 }
+
+TEST(common, hamming_distance) {
+  const char *str = "this is a test";
+  const char *str2 = "wokka wokka!!!";
+  ASSERT_EQ(hamming_distance(str, str2, strlen(str)), 37);
+}
