@@ -1,8 +1,17 @@
-# Detect single-character XOR
+# Single-byte XOR cipher
 
-One of the 60-character strings in this [file](/test/resources/4.txt) has been encrypted by single-character XOR.
+The hex encoded string:
 
-Find it.
+```
+1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736
+```
 
-(Your code from #3 should help.)
+... has been XOR'd against a single character. Find the key, decrypt the message.
+
+You can do this by hand. But don't: write code to do it for you.
+
+How? Devise some method for "scoring" a piece of English plaintext. Character
+frequency is a good metric. Evaluate each output and choose the one with the
+best score.
+
 

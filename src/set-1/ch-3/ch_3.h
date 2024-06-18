@@ -1,15 +1,7 @@
-#ifndef CH_3_H_
-#define CH_3_H_
+#ifndef CH_1_H_
+#define CH_1_H_
 
 #include "common.h"
-#include <algorithm>
-#include <cstddef>
-#include <cstdint>
-#include <cstring>
-#include <memory>
-#include <string.h>
-
-void single_byte_xor_cipher(const char *str, char **out, char *cipher,
-                            float *fitness);
+#include "single_byte_xor.h"
 
 #endif

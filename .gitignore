@@ -35,3 +35,4 @@ Testing/
 *.exe
 *.out
 *.app
+*.dump

@@ -1,12 +1,9 @@
-#ifndef CH1_H_
-#define CH1_H_
+#ifndef CH_1_H_
+#define CH_1_H_
 
-#include "common.h"
-#include <cstddef>
-#include <cstdint>
-#include <cstdlib>
 #include <memory.h>
 
-void b64_str(const char *str, char **out);
+#include "common.h"
+#include "hex_to_b64.h"
 
 #endif
