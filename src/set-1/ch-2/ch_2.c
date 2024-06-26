@@ -15,16 +15,18 @@ int main() {
   size_t len;
   size_t len_key;
 
-  hex_str_to_buff(str, &buff_str, &len);
-  hex_str_to_buff(key, &buff_key, &len_key);
+  buff_str = hex_str_to_buff(str, &len);
+  buff_key = hex_str_to_buff(key, &len_key);
 
   assert(len == len_key);
 
   fixed_xor(buff_str, buff_key, len, &buff_out);
 
-  buff_to_hex_str(buff_out, len, &out);
-  printf("%s\n", out);
+  out = buff_to_hex_str(buff_out, len);
   assert(strcmp(out, expected) == 0);
+
+  printf("%s\n", out);
+
   free(buff_str);
   free(buff_key);
   free(buff_out);

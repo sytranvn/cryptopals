@@ -5,6 +5,6 @@
 #include <sys/types.h>
 
 #include "common.h"
-void repeating_key_xor(const char* str, const char* key, u_int8_t** out);
 
+char* repeating_key_xor(const char* str, size_t len, const char* key);
 #endif

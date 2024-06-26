@@ -1,10 +1,14 @@
 #include "hex_to_b64.h"
 
-void hex_to_b64(const char *hex_str, char **out) {
-  u_int8_t *buff;
+char* hex_to_b64(const char* hex_str) {
+  u_int8_t* buff;
   size_t len;
+  char* out;
 
-  hex_str_to_buff(hex_str, &buff, &len);
-  buff_to_b64_str(buff, len, out);
+  buff = hex_str_to_buff(hex_str, &len);
+  out = buff_to_b64_str(buff, len);
+
   free(buff);
+
+  return out;
 }

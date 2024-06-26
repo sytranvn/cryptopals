@@ -8,14 +8,22 @@
 #include <stdlib.h>
 #include <sys/types.h>
 
-void hex_str_to_buff(const char *str, u_int8_t **buff, size_t *len);
-void buff_to_hex_str(const u_int8_t *buff, size_t len, char **str);
+u_int8_t *hex_str_to_buff(const char *str, size_t *len);
+u_int8_t *b64_str_to_buff(const char *b64, size_t *bufflen);
+
+char *buff_to_hex_str(const u_int8_t *buff, size_t len);
+char *buff_to_b64_str(const u_int8_t *buff, size_t len);
+
 void long_str_to_lines(const char *str, int max_len, char ***out, size_t *len);
 
 void b64_str(const char *str, char **out);
-void b64_str_to_buff(const char *b64, u_int8_t **buff, size_t *bufflen);
 
-void buff_to_b64_str(const u_int8_t *buff, size_t len, char **out);
+/** My malloc*/
+void *mmalloc(size_t size);
+
+void *mcalloc(size_t nmem, size_t size, const char *_file, int _line);
+
+u_int ipow(int base, u_int ex);
 
 #define debug(fmt, ...)                             \
   do {                                              \

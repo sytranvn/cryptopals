@@ -14,8 +14,8 @@ u_int8_t* buff;
 char* out;
 
 int main() {
-  repeating_key_xor(str, key, &buff);
-  buff_to_hex_str(buff, strlen(str), &out);
+  buff = repeating_key_xor(str, strlen(str), key);
+  out = buff_to_hex_str(buff, strlen(str));
   printf("%s\n", out);
   assert(strcmp(out, expected) == 0);
   return 0;

@@ -7,7 +7,6 @@ int lines = 0;
 u_int8_t** buff;
 size_t* len;
 char** out;
-char* key;
 const char* expected = "Now that the party is jumping\n";
 
 void read_input(int argc, const char** args);
@@ -21,19 +20,15 @@ int main(int argc, const char** args) {
     fgets(line, 100, f);
     char* c = strchr(line, '\n');
     if (c) *c = '\0';
-    strings[i] = (char*)malloc(strlen(line) * sizeof(char));
-    if (!strings[i]) {
-      fprintf(stderr, "Unable to allocate %ld bytes\n",
-              strlen(line) * sizeof(char));
-      exit(EXIT_FAILURE);
-    }
+    strings[i] = (char*)mmalloc(strlen(line) * sizeof(char));
     strcpy(strings[i], line);
   }
   float s = 0;
   char result[100];
   for (int i = 0; i < lines; i++) {
-    hex_str_to_buff(strings[i], &(buff[i]), &len[i]);
-    float score = single_byte_xor(buff[i], len[i], &(out[i]), &key[i]);
+    buff[i] = hex_str_to_buff(strings[i], &len[i]);
+    float score;
+    single_byte_xor(buff[i], len[i], NULL, &score);
     if (score > s) {
       s = score;
       strcpy(result, out[i]);
@@ -70,31 +65,10 @@ void read_input(int argc, const char** args) {
     lines++;
   }
   fseek(f, 0, SEEK_SET);
-  strings = malloc(lines * sizeof(char*));
-  if (!strings) {
-    fprintf(stderr, "Unable to allocate %ld bytes\n", lines * sizeof(char*));
-    exit(EXIT_FAILURE);
-  }
-  len = malloc(lines * sizeof(*len));
-  if (!len) {
-    fprintf(stderr, "Unable to allocate %ld bytes\n", lines * sizeof(size_t));
-    exit(EXIT_FAILURE);
-  }
-  buff = malloc(lines * sizeof(u_int8_t));
-  if (!buff) {
-    fprintf(stderr, "Unable to allocate %ld bytes\n", lines * sizeof(u_int8_t));
-    exit(EXIT_FAILURE);
-  }
-  out = malloc(lines * sizeof(char*));
-  if (!out) {
-    fprintf(stderr, "Unable to allocate %ld bytes\n", lines * sizeof(char*));
-    exit(EXIT_FAILURE);
-  }
-  key = malloc(lines * sizeof(char));
-  if (!key) {
-    fprintf(stderr, "Unable to allocate %ld bytes\n", lines * sizeof(char));
-    exit(EXIT_FAILURE);
-  }
+  strings = mmalloc(lines * sizeof(char*));
+  len = mmalloc(lines * sizeof(*len));
+  buff = mmalloc(lines * sizeof(u_int8_t));
+  out = mmalloc(lines * sizeof(char*));
   printf("Read %d lines\n", lines);
 }
 static int compare(const void* a, const void* b) {
