@@ -214,3 +214,18 @@ u_int ipow(int base, u_int ex) {
   }
   return result;
 }
+
+u_int64_t llpow(int base, u_int ex) {
+  u_int64_t result = 1;
+  u_int64_t b = (u_int64_t)base;
+  while (ex) {
+    if (ex % 2) result *= b;
+    ex /= 2;
+    b *= b;
+  }
+  return result;
+}
+
+void *combinations(void *base, size_t nmem, size_t size) {
+  qsort(base, nmem, size, NULL);
+}

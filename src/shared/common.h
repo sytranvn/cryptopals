@@ -24,6 +24,9 @@ void *mmalloc(size_t size);
 void *mcalloc(size_t nmem, size_t size, const char *_file, int _line);
 
 u_int ipow(int base, u_int ex);
+u_int64_t llpow(int base, u_int ex);
+
+void *combinations(void *base, size_t nmem, size_t size);
 
 #define debug(fmt, ...)                             \
   do {                                              \

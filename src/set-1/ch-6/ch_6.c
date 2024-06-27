@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <sys/types.h>
+#include <time.h>
 
 #include "common.h"
 #include "english_character_scoring.h"
@@ -14,11 +16,12 @@ void cleanup();
 void all_key_comb(char** top_keys, int len, int top, char* curr,
                   char*** gen_keys, int i, int* comb_count);
 
-char** get_top_keys(u_int8_t* buff, size_t buff_len, size_t keysize,
+char** get_top_keys(u_int8_t* buff, size_t buff_len, size_t* keysize,
                     const int top);
 
 char* backtracking(u_int8_t* buff, size_t buff_len, char** top_keys,
-                   int key_size, int top, int pos, char* key, float* max_score);
+                   int key_size, int top, int pos, char* key, char** text,
+                   float* max_score);
 
 int main(int argc, const char** args) {
   int d = hamming_distance((u_int8_t*)"this is a test",
@@ -30,18 +33,17 @@ int main(int argc, const char** args) {
   u_int8_t* buff = b64_str_to_buff(content, &buff_len);
   free(content);
 
-  int keysize;
-  const int top = 5;
-  char** top_keys = get_top_keys(buff, buff_len, keysize, top);
+  size_t keysize;
+  const size_t top = 3;
+  char** top_keys = get_top_keys(buff, buff_len, &keysize, top);
+  printf("key size: %ld\n", keysize);
 
-  char** key_combs;
-  int comb_count = ipow(top, keysize);
-  key_combs = mmalloc(sizeof(char*) * comb_count);
   float score = 0;
   char* key = mmalloc(keysize + 1);
-  char* result =
-      backtracking(buff, buff_len, top_keys, keysize, top, 0, key, &score);
-  printf("%s", result);
+  char* text = NULL;
+  char* result = backtracking(buff, keysize, top_keys, keysize, top, 0, key,
+                              &text, &score);
+  printf("%s %f\n", text, score);
 }
 
 char* read_input(int argc, const char** args) {
@@ -77,7 +79,7 @@ char* read_input(int argc, const char** args) {
   return str;
 }
 
-char** get_top_keys(u_int8_t* buff, size_t buff_len, size_t keysize,
+char** get_top_keys(u_int8_t* buff, size_t buff_len, size_t* keysize,
                     const int top) {
   float min_d = 999.9;
   float avg_d;
@@ -93,37 +95,41 @@ char** get_top_keys(u_int8_t* buff, size_t buff_len, size_t keysize,
     }
     avg_d = (1.0 * d) / c;
     if (avg_d < min_d) {
-      keysize = ks;
+      *keysize = ks;
       min_d = avg_d;
     };
   }
-  char** top_keys = mmalloc(keysize * sizeof(char*));
+  char** top_keys = mmalloc(*keysize * sizeof(char*));
   for (int i = 0; i < top; i++) {
     top_keys[i] = mmalloc(top);
   }
-  int width = keysize * ((buff_len + keysize) / keysize);
-  for (int i = 0; i < keysize; i++) {
+  int width = *keysize * ((buff_len + *keysize) / (*keysize));
+  for (int i = 0; i < *keysize; i++) {
     single_byte_xor_top_n(buff + (i * width), width, top, &(top_keys[i]));
   }
   return top_keys;
 }
 
 char* backtracking(u_int8_t* buff, size_t buff_len, char** top_keys,
-                   int key_size, int top, int pos, char* key,
+                   int key_size, int top, int pos, char* key, char** text,
                    float* max_score) {
   if (pos == key_size) {
     char* de = repeating_key_xor((char*)buff, buff_len, key);
     float s = english_character_scoring(de, buff_len);
     if (s > *max_score) {
+      printf("update score %f to %f\n", *max_score, s);
+      printf("%s\n", de);
       *max_score = s;
-      return de;
+      if (*text != NULL) free(*text);
+      *text = de;
     } else {
       free(de);
     }
+    return NULL;
   }
   for (int i = 0; i < top; i++) {
-    backtracking(buff, buff_len, top_keys, key_size, top, pos + 1, key,
+    backtracking(buff, buff_len, top_keys, key_size, top, pos + 1, key, text,
                  max_score);
   }
-  return (char*)&("");
+  return NULL;
 }
