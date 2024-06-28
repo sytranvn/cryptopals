@@ -19,14 +19,14 @@ void long_str_to_lines(const char *str, int max_len, char ***out, size_t *len);
 void b64_str(const char *str, char **out);
 
 /** My malloc*/
-void *mmalloc(size_t size);
+void *_mmalloc(size_t size, const char *_file, int _line);
+#define mmalloc(size) _mmalloc(size, __FILE__, __LINE__)
 
-void *mcalloc(size_t nmem, size_t size, const char *_file, int _line);
+void *_mcalloc(size_t nmem, size_t size, const char *_file, int _line);
+#define mcalloc(nmem, size) _mcalloc(nmem, size, __FILE__, __LINE__)
 
 u_int ipow(int base, u_int ex);
 u_int64_t llpow(int base, u_int ex);
-
-void *combinations(void *base, size_t nmem, size_t size);
 
 #define debug(fmt, ...)                             \
   do {                                              \

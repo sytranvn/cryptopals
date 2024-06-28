@@ -84,16 +84,23 @@ char** get_top_keys(u_int8_t* buff, size_t buff_len, size_t* keysize,
   float min_d = 999.9;
   float avg_d;
   int d;
+  int* indexes = mcalloc(buff_len / 2, sizeof(*indexes));
   for (int ks = 2; ks < 40; ks++) {
     d = 0;
+    memset(indexes, 0, buff_len / 2 * sizeof(*indexes));
     int c = 0;
     for (int i = 0; i < buff_len - ks - 4; i += ks) {
-      for (int j = i + 1; j < buff_len - 4; j++) {
-        d += hamming_distance(buff + i, buff + i + ks, 4);
-        c++;
+      indexes[c++] = i;
+    }
+
+    int k = 0;
+    for (int i = 0; i < c - 1; i++) {
+      for (int j = i + 1; j < c; j++) {
+        d += hamming_distance(buff + indexes[i], buff + indexes[j], 4);
+        k++;
       }
     }
-    avg_d = (1.0 * d) / c;
+    avg_d = (1.0 * d) / k;
     if (avg_d < min_d) {
       *keysize = ks;
       min_d = avg_d;
@@ -118,7 +125,8 @@ char* backtracking(u_int8_t* buff, size_t buff_len, char** top_keys,
     float s = english_character_scoring(de, buff_len);
     if (s > *max_score) {
       printf("update score %f to %f\n", *max_score, s);
-      printf("%s\n", de);
+      printf("key: %s\n", key);
+      printf("text: %s\n", de);
       *max_score = s;
       if (*text != NULL) free(*text);
       *text = de;
@@ -128,6 +136,7 @@ char* backtracking(u_int8_t* buff, size_t buff_len, char** top_keys,
     return NULL;
   }
   for (int i = 0; i < top; i++) {
+    key[pos] = top_keys[pos][i];
     backtracking(buff, buff_len, top_keys, key_size, top, pos + 1, key, text,
                  max_score);
   }

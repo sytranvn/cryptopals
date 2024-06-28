@@ -57,7 +57,7 @@ u_int8_t *hex_str_to_buff(const char *str, size_t *len) {
   return buff;
 }
 char *buff_to_hex_str(const u_int8_t *buff, size_t len) {
-  char *str = (char *)mcalloc((len * 2 + 1), sizeof(char), __FILE__, __LINE__);
+  char *str = (char *)_mcalloc((len * 2 + 1), sizeof(char), __FILE__, __LINE__);
   char f, s;
   for (int i = 0; i < len; i++) {
     f = buff[i] >> 4;
@@ -126,8 +126,8 @@ char *buff_to_b64_str(const u_int8_t *buff, size_t len) {
   // b64 j __111111 __111111 __000011 __001100
   // or we can say 3 uint8 elements turn into 4 uint6 elements
   size_t b64_buff_len = len * 4 / 3;
-  char *out = (char *)mcalloc((b64_buff_len + 1), sizeof(char), __FILE__,
-                              __LINE__);  // +1 for \0
+  char *out = (char *)_mcalloc((b64_buff_len + 1), sizeof(char), __FILE__,
+                               __LINE__);  // +1 for \0
   int j = 0;
   for (int i = 0; i < len; i += 3) {
     assert(i + 2 < len);
@@ -158,7 +158,7 @@ u_int8_t *b64_str_to_buff(const char *b64, size_t *bufflen) {
   assert(len % 4 == 0);
   (*bufflen) = (len - paddings) * 3 / 4;
   u_int8_t *buff =
-      (u_int8_t *)mcalloc(*bufflen, sizeof(u_int8_t), __FILE__, __LINE__);
+      (u_int8_t *)_mcalloc(*bufflen, sizeof(u_int8_t), __FILE__, __LINE__);
   // b64 i __101010 __010101 __110011 __000111
   // ui8 j 10101001 01011100 11000111
   int j = 0;
@@ -187,16 +187,17 @@ u_int8_t *b64_str_to_buff(const char *b64, size_t *bufflen) {
   return buff;
 }
 
-void *mmalloc(size_t size) {
+void *_mmalloc(size_t size, const char *_file, int _line) {
   void *p = malloc(size);
   if (!p) {
-    fprintf(stderr, "Unable to allocate %ld bytes\n", size);
+    fprintf(stderr, "[%s:%d]Unable to allocate %ld bytes\n", _file, _line,
+            size);
     exit(EXIT_FAILURE);
   }
   return p;
 }
 
-void *mcalloc(size_t nmem, size_t size, const char *_file, int _line) {
+void *_mcalloc(size_t nmem, size_t size, const char *_file, int _line) {
   void *p = calloc(nmem, size);
   if (!p) {
     fprintf(stderr, "[%s:%d] Unable to allocate %ld bytes\n", _file, _line,
@@ -205,6 +206,7 @@ void *mcalloc(size_t nmem, size_t size, const char *_file, int _line) {
   }
   return p;
 }
+
 u_int ipow(int base, u_int ex) {
   unsigned result = 1;
   while (ex) {
@@ -224,8 +226,4 @@ u_int64_t llpow(int base, u_int ex) {
     b *= b;
   }
   return result;
-}
-
-void *combinations(void *base, size_t nmem, size_t size) {
-  qsort(base, nmem, size, NULL);
 }
