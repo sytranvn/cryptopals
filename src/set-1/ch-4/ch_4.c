@@ -1,5 +1,8 @@
 #include "ch_4.h"
 
+#include <limits.h>
+#include <math.h>
+
 FILE* f;
 char** strings;
 char line[100];
@@ -11,8 +14,6 @@ const char* expected = "Now that the party is jumping\n";
 
 void read_input(int argc, const char** args);
 void cleanup();
-
-static int compare(const void* a, const void* b);
 
 int main(int argc, const char** args) {
   read_input(argc, args);
@@ -49,7 +50,6 @@ void cleanup() {
   }
   free(buff);
   free(strings);
-  fclose(f);
 }
 void read_input(int argc, const char** args) {
   if (argc == 1) {
@@ -70,11 +70,5 @@ void read_input(int argc, const char** args) {
   buff = mmalloc(lines * sizeof(u_int8_t));
   out = mmalloc(lines * sizeof(char*));
   printf("Read %d lines\n", lines);
-}
-static int compare(const void* a, const void* b) {
-  char* _a = (char*)a;
-  char* _b = (char*)b;
-  float sa = english_character_scoring(_a, strlen(_a));
-  float sb = english_character_scoring(_b, strlen(_b));
-  return (sa < sb) - (sa > sb);
+  fclose(f);
 }

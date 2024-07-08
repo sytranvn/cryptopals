@@ -5,7 +5,7 @@
 int compar(const void *a, const void *b) {
   decrypted_text *_a = (decrypted_text *)a;
   decrypted_text *_b = (decrypted_text *)b;
-  return (_a->score < _b->score) - (_a->score > _b->score);
+  return (_a->score > _b->score) - (_a->score < _b->score);
 }
 
 char *single_byte_xor(const u_int8_t *buff, size_t len, char *key,
