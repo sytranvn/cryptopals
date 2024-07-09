@@ -54,6 +54,7 @@ u_int8_t *hex_str_to_buff(const char *str, size_t *len) {
     buff[i] |= ((a[i * 2] << 4) | a[i * 2 + 1]);
   }
   *len = l / 2;
+  free(a);
   return buff;
 }
 char *buff_to_hex_str(const u_int8_t *buff, size_t len) {
